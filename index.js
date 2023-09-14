@@ -5,19 +5,20 @@ const app = express()
 const port = process.env.PORT || 5000;
 
 const adminRouter = require('./admin');
-const sellerRouter = require('./seller');
-const customerRouter = require('./customer');
-const productRouter = require('./product');
-const dashboardRouter = require('./dashboard');
+const userRouter=require('./users');
+const commentRouter = require('./comment');
 
 app.use(cors())
 app.use(express.json())
 
   app.use('/',adminRouter);
+  app.use('/',userRouter);
+  app.use('/',commentRouter);
+
 
 
 app.get('/', (req, res) => {
-    res.send('Empower Rise Website Running!')
+    res.send({status:true,text:'Empower Rise Website Running!'});
 })
 
 app.listen(port, () => {
